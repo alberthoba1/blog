@@ -1,0 +1,21 @@
+<h1>Lista</h1>
+<p>
+<%= link_to "Stwórz nowy artykuł", new_article_path %>
+</p>
+<table>
+<tr>
+  <th>Title</th>
+  <th>Description</th>
+</tr>
+
+<% @articles.each do |article| %>
+<tr>
+  <td><%= article.title %></td>
+  <td><%= article.description %></td>
+  <td><%= article.created_at %></td>
+  <td><%= link_to 'Edytuj', edit_article_path(article) %></td>
+  <td><%= link_to 'poka', article_path(article) %></td>
+  <td><%= link_to 'usun to', article_path(article), method: :delete, data: {confirm: "na pewno?"} %> </td>
+</tr>
+<% end %>
+</table>

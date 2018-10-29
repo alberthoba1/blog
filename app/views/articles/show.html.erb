@@ -1,0 +1,15 @@
+<h1>Stworzony article</h1>
+
+<p>
+  Tytul: <%= @article.title %>
+</p>
+
+<p>
+  Description <%= @article.description %>
+</p>
+<p>
+  Stworzono: <%= @article.created_at %>
+</p>
+<%= link_to 'edytuj ten artykuł', edit_article_path(@article) %>
+|
+<%= link_to 'Lista', articles_path %>
