@@ -1,15 +1,12 @@
 class ArticlesController < ApplicationController
-before_action :set_article, only: [:edit, :update, :show, :destroy]
-  def index
-    @articles = Article.all
-  end
+  load_and_authorize_resource
+  def index; end
 
-  def new
-    @article = Article.new
-  end
+  def new; end
 
-  def edit
+  def edit; end
 
+  def test_2
   end
 
   def update
@@ -18,25 +15,27 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
       redirect_to article_path(@article)
     else
       render 'edit'
+
     end
   end
 
   def create
    @article = Article.new(article_params)
+   @article.user = current_user
     if @article.save
-      flash[:notice] = "Article stworzony"
+      flash[:success] = "create more articles before i piss myself"
       redirect_to article_path(@article)
     else
       render 'new'
-    end
+   end
   end
 
   def show
-
+    @comments = @article.comments
+    @comment = Comment.new
   end
 
   def destroy
-
     @article.destroy
     flash[:notice] = "Usunieto artykul"
     redirect_to articles_path

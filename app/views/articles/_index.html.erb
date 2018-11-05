@@ -1,0 +1,24 @@
+<h1>Comments</h1>
+
+<% @comments.each do |comment| %>
+<div class="row">
+  <div class="col-xs-8 col-xs">
+    <div class="well well-lg">
+
+      <div class="article-body">
+  <%= truncate(comment.text, length: 100) %>
+      </div>
+      <div class="article-actions">
+
+
+        <%= link_to "Delete this comment",
+
+        article_comment_path(@article, comment),
+    method: :delete,
+     data: { confirm: "Are you sure about that?" },
+        class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
