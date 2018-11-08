@@ -13,6 +13,8 @@ class Ability
     cannot :create, Article
     cannot :destroy, Comment
     cannot :create, Comment
+    cannot :manage, Message
+
   end
 
   def user_abilities
@@ -21,6 +23,9 @@ class Ability
     can :create, Article
     can :create, Comment
     cannot :destroy, Comment
+    cannot :read, Message
+    can :create, Message
+    cannot :destroy, Message
   end
 
   def admin_abilities

@@ -34,7 +34,7 @@
 .jumbotron {
   background-image: asset-url('bobbyb.jpg');
   background-size:cover;
-   height:600px;
+   height:800px;
 }
 
 .jumbotron h1 {
@@ -95,4 +95,20 @@ footer small {
 
 .comment {
   padding-top:50px;
+}
+
+.micon {
+  background-image: asset-url('mail.jpg');
+  float:right;
+  height:256px;
+  width:256px;
+  margin-right:180px;
+  margin-top:80px;
+
+}
+
+.msgh2 {
+  padding-top:100px;
+  padding-left:190px;
+  float:left;
 }

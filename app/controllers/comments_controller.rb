@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     def create
       @comment = @article.comments.new(comment_params)
       if @comment.save
-        flash[:success] = "Careful now Ned"
+        flash[:success] = "Pomyślnie utworzono komentarz"
         redirect_to article_path(@article)
       else
         raise "error"
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     def destroy
       @comment = @article.comments.find(params[:id])
       @comment.destroy
-      flash[:notice] = "Coward"
+      flash[:notice] = "Pomyślnie usunięto komentarz"
       redirect_to article_path(@comment.article)
     end
 

@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "artykul zaaktualizowany"
+      flash[:notice] = "Artykuł zaaktualizowany"
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
    @article = Article.new(article_params)
    @article.user = current_user
     if @article.save
-      flash[:success] = "create more articles before i piss myself"
+      flash[:success] = "Artykuł utworzono pomyślnie"
       redirect_to article_path(@article)
     else
       render 'new'
@@ -37,14 +37,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:notice] = "Usunieto artykul"
+    flash[:notice] = "Usunięto artykuł"
     redirect_to articles_path
   end
 
   private
-  def set_article
-    @article = Article.find(params[:id])
-  end
+
 
   def article_params
     params.require(:article).permit(:title, :description)
