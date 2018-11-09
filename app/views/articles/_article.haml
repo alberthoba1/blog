@@ -1,0 +1,26 @@
+- obj.each do |article|
+  .center
+    .row
+      .col-xs-8.col-xs-offset-2
+        .well.well-lg
+          .article-title
+            = link_to article.title, article_path(article)
+          .article-body
+            = truncate(article.description, length: 100)
+            .article-meta-details
+              %small
+                Utworzony przez: #{article.user.username if article.user},
+                \#{time_ago_in_words(article.created_at)} temu,
+                last updated: #{time_ago_in_words(article.updated_at)}
+                temu
+          - if can? :manage, Article, user: @user
+            .article-actions
+              = link_to "Edytuj ten artykuł",   |
+                edit_article_path(article),     |
+                class: "btn btn-xs btn-primary" |
+              -#
+              = link_to "Usuń ten artykuł",                                   |
+                article_path(article),                                        |
+                method: :delete,                                              |
+                data: { confirm: "Czy na pewno chcesz usunąć ten artykuł?" }, |
+                class: "btn btn-xs btn-danger"                                |

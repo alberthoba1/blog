@@ -13,24 +13,28 @@ class CommentsController < ApplicationController
         flash[:success] = "Pomyślnie utworzono komentarz"
         redirect_to article_path(@article)
       else
-        raise "error"
+        flash[:notice] = "Wystąpił błąd"
     end
     end
 
 
     def destroy
       @comment = @article.comments.find(params[:id])
-      @comment.destroy
-      flash[:notice] = "Pomyślnie usunięto komentarz"
-      redirect_to article_path(@comment.article)
+      if @comment.destroy
+        flash[:notice] = "Pomyślnie usunięto komentarz"
+        redirect_to article_path(@comment.article)
+      else
+        render 'show'
+        flash[:notice] = "Wystąpił błąd"
+      end
     end
 
     private
-    def set_article
-      @article = Article.find(params[:article_id])
-    end
+      def set_article
+        @article = Article.find(params[:article_id])
+      end
 
-    def comment_params
-      params.require(:comment).permit(:text)
-    end
+      def comment_params
+        params.require(:comment).permit(:text)
+      end
 end

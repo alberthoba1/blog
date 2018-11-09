@@ -6,8 +6,7 @@ class ArticlesController < ApplicationController
 
   def edit; end
 
-  def test_2
-  end
+  def test_2; end
 
   def update
     if @article.update(article_params)
@@ -15,18 +14,17 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render 'edit'
-
     end
   end
 
   def create
    @article = Article.new(article_params)
    @article.user = current_user
-    if @article.save
-      flash[:success] = "Artykuł utworzono pomyślnie"
-      redirect_to article_path(@article)
-    else
-      render 'new'
+   if @article.save
+     flash[:success] = "Artykuł utworzono pomyślnie"
+     redirect_to article_path(@article)
+   else
+     render 'new'
    end
   end
 
@@ -36,16 +34,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
-    flash[:notice] = "Usunięto artykuł"
-    redirect_to articles_path
+    if  @article.destroy
+      flash[:notice] = "Usunięto artykuł"
+      redirect_to articles_path
+    else
+      render 'index'
+      flash[:notice] = "Wystąpił błąd"
+    end
   end
 
   private
-
-
-  def article_params
-    params.require(:article).permit(:title, :description)
-  end
+    def article_params
+      params.require(:article).permit(:title, :description)
+    end
 
 end

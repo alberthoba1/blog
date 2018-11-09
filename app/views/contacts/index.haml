@@ -12,12 +12,6 @@
                 = message.email
             .article-body
               = truncate(message.description, length: 500)
-              .article-meta-details
-                %small
-                  Created by: #{message.user.username if message.user},
-                  \#{time_ago_in_words(message.created_at)} ago,
-                  last updated: #{time_ago_in_words(message.updated_at)}
-                  ago
             - if can? :manage, Message, user: @user
               .article-actions
                 = link_to "Usuń tę wiadomość", contact_path(message), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć tę wiadomość?" }, class: "btn btn-xs btn-danger"

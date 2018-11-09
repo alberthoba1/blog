@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :set_user, only: [:edit, :update, :show]
+
   def index
     @users = User.all
   end
@@ -18,30 +19,26 @@ before_action :set_user, only: [:edit, :update, :show]
     end
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
       flash[:success] = "Zaaktualizowano konto"
       redirect_to articles_path
     else
-      render 'Edit'
+      render 'edit'
     end
   end
 
-  def show
-
-  end
+  def show; end
 
   private
-def set_user
-  @user = User.find(params[:id])
-end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password)
-  end
+    def user_params
+      params.require(:user).permit(:username, :email, :password)
+    end
 
 end

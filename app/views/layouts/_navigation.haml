@@ -1,0 +1,40 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "BLOG", root_path, class: "navbar-brand", id: "logo"
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Artykuły", articles_path
+        - if can? :manage, :all
+          %li= link_to "Użytkownicy", users_path
+        - if can? :create, Article
+          %li= link_to "Stwórz nowy artykuł", new_article_path
+      %form.navbar-form.navbar-left
+        .form-group
+          %input.form-control{:placeholder => "Szukaj...", :type => "text"}/
+        %button.btn.btn-default{:type => "submit"} Znajdź
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            - if logged_in?
+              = current_user.email
+              %span.caret
+          %ul.dropdown-menu
+            %li= link_to 'Stwórz nową wiadomość', new_contact_path(@message)
+            %li.divider{:role => "separator"}
+            - if can? :read, Message
+              %li= link_to 'Pokaż wszystkie wiadomości', contacts_path
+        - if logged_in?
+          %li= link_to 'Wyloguj się', logout_path, method: :delete
+        - else
+          %li= link_to 'Zaloguj się', login_path
+        %li= link_to 'Zarejestruj się', signup_path
+    / /.navbar-collapse
+  / /.container-fluid

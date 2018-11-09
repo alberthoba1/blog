@@ -1,5 +1,5 @@
-%a.micon{:href => "email@gmail.com"}
-%h2.msgh2 Contact us
+%a.envelope-icon{:href => "email@gmail.com"}
+%h2.new-msg-h2 Contact us
 = render 'shared/errors', obj: @message
 .row
   .col-xs-12
@@ -10,7 +10,7 @@
         .col-sm-8
           = f.text_field :title,
             class: "form-control",
-            placeholder: "",
+            placeholder: "Wprowadź tytuł",
             autofocus: true
       .form-group
         .control-label.col-sm-2
@@ -18,13 +18,13 @@
         .col-sm-8
           = f.email_field :email,
             class: "form-control",
-            placeholder: "Enter email",
+            placeholder: "Wprowadź email",
             autofocus: true
       .form-group
         .control-label.col-sm-2
           = f.label :Treść
         .col-sm-8
-          = f.text_area :description, rows: 9, class: "form-control", placeholder: "Body of article"
+          = f.text_area :description, rows: 9, class: "form-control", placeholder: "Wprowadź treść"
       .form-group
         .col-sm-offset-5.col-sm-1
           = f.submit 'Wyślij', rows: 9, class: 'btn btn-primary btn-lg'
