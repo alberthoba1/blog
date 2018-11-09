@@ -1,11 +1,9 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource :article
   load_and_authorize_resource :comment, through: :article
-  before_action :set_article
+
   def new; end
 
-    def edit
-    end
 
     def create
       @comment = @article.comments.new(comment_params)
@@ -14,7 +12,7 @@ class CommentsController < ApplicationController
         redirect_to article_path(@article)
       else
         flash[:notice] = "Wystąpił błąd"
-    end
+      end
     end
 
 
@@ -30,9 +28,6 @@ class CommentsController < ApplicationController
     end
 
     private
-      def set_article
-        @article = Article.find(params[:article_id])
-      end
 
       def comment_params
         params.require(:comment).permit(:text)

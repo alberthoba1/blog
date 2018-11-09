@@ -1,11 +1,6 @@
 class ContactsController < ApplicationController
 load_and_authorize_resource class: "Message", param_method: :message_params
 
-  def show
-    @messages = @contact.messages
-    @message = Message.new
-  end
-
   def index
     @messages = @contacts
   end
@@ -26,6 +21,7 @@ load_and_authorize_resource class: "Message", param_method: :message_params
   end
 
   def destroy
+    @message = @contact
     if @message.destroy
       flash[:notice] = "Usunięto wiadomość"
       redirect_to contacts_path

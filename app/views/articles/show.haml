@@ -12,3 +12,5 @@
           %li
             %small= pluralize(@article.user.articles.count, "article") if @article.user.articles
   %h4.center.description Treść
+  = render 'cform'
+  = render 'index'

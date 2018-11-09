@@ -3,6 +3,7 @@ class UserMailer < ApplicationMailer
 
   def smail(message)
     @message = message
-    mail(to: 'alberthoba6@gmail.com', subject: "#{@message.title}"  )
+    mail(to: 'alberthoba6@gmail.com', subject: "#{@message.title}")
   end
+
 end

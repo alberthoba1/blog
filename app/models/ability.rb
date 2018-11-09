@@ -14,7 +14,6 @@ class Ability
     cannot :destroy, Comment
     cannot :create, Comment
     cannot :manage, Message
-
   end
 
   def user_abilities
