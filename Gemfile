@@ -12,6 +12,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'cancancan', '~> 2.0'
 gem 'haml'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

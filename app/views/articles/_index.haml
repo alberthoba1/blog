@@ -1,0 +1,13 @@
+%h1 Comments
+- @comments.each do |comment|
+  .row
+    .col-xs-8.col-xs
+      .well.well-lg
+        .article-body
+          = truncate(comment.text, length: 100)
+        .article-actions
+          = link_to "Usuń ten komentarz",                                   |
+            article_comment_path(@article, comment),                        |
+            method: :delete,                                                |
+            data: { confirm: "Czy na pewno chcesz usunąć ten komentarz?" }, |
+            class: "btn btn-xs btn-danger"                                  |

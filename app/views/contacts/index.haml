@@ -1,0 +1,17 @@
+%table
+  - @messages.each do |message|
+    .center
+      .row
+        .col-xs-8.col-xs-offset-2
+          .well.well-lg
+            .article-title
+              = message.title
+              %br/
+              %small
+                sent to:
+                = message.email
+            .article-body
+              = truncate(message.description, length: 500)
+            - if can? :manage, Message, user: @user
+              .article-actions
+                = link_to "Usuń tę wiadomość", contact_path(message), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć tę wiadomość?" }, class: "btn btn-xs btn-danger"

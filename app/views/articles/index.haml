@@ -1,0 +1,4 @@
+%h1{:align => "center"} Lista
+- if can? :destroy, @article
+  = link_to "Stwórz nowy artykuł", new_article_path(@article)
+= render 'article', obj: @articles

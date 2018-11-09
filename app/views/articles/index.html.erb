@@ -1,7 +1,0 @@
-<h1 align="center">Lista</h1>
-
-<% if can? :destroy, @article %>
-  <%= link_to "Create new article", new_article_path(@article) %>
-<% end %>
-
-<%= render 'article', obj: @articles %>
