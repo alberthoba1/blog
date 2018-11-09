@@ -7,15 +7,15 @@ load_and_authorize_resource class: "Message", param_method: :message_params
   end
 
   def index
-    @message = Message.all
+    @messages = @contacts
   end
 
   def new
-    @message = Message.new
+    @message = @contact
   end
 
   def create
-    @message = Message.new(message_params)
+    @message = @contact
      if @message.save
        flash[:success] = "Wiadomość stworzona"
        redirect_to new_contact_path
@@ -26,7 +26,6 @@ load_and_authorize_resource class: "Message", param_method: :message_params
   end
 
   def destroy
-    @message = Message.find(params[:id])
     if @message.destroy
       flash[:notice] = "Usunięto wiadomość"
       redirect_to contacts_path
